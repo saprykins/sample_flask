@@ -2,7 +2,8 @@
 # pip install flask
 # python -c "import flask; print(flask.__version__)"
 
-# commands after file is saved:
+# commands after .py-file is saved:
+
 # export FLASK_APP=hello
 # export FLASK_ENV=development # not required line
 # flask run
@@ -12,6 +13,16 @@
 
 
 from flask import Flask
+
+# to let us create dictionary to send parameters from URL to web-page
+from flask import request
+
+# w/ the command line command: curl v=3 http://127.0.0.1:5000/
+# we can send v=3 get-command that will be accepted
+# but if we try POST-command
+# curl -d v=3 http://127.0.0.1:5000/
+# this method isn't allowed
+
 
 app = Flask(__name__)
 # создаете ваш экземпляр приложения Flask с именем app
@@ -28,7 +39,7 @@ app = Flask(__name__)
 
 # функция будет отвечать на веб-запросы для URL /
 def index():
-    return "Index Page"
+    return str(request.args)
 
 
 # http://127.0.0.1:5000/hello
